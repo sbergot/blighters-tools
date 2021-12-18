@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { departmentsData, skillNames } from "./Data";
+import { departmentsData, rolesData, skillNames } from "./Data";
 import { GeneratePlayer, InitSkills } from "./PlayerGenerator";
 import { SkillLevel } from "./SharedComponents";
 import { Player, SkillName } from "./Types";
@@ -15,6 +15,8 @@ export function CreationWizard({
   const [remainingSkillPoints, setRemainingSkillPoints] =
     useState(additionalSkills);
   const { department, role } = player;
+  const departData = departmentsData[department];
+  const rData = rolesData[role];
 
   function addSkill(skillName: SkillName) {
     setRemainingSkillPoints((p) => p - 1);
@@ -59,13 +61,25 @@ export function CreationWizard({
   const colClass = !skillsOk ? "grid-cols-3fc" : "grid-cols-2fc";
   return (
     <div>
+      <button onClick={reroll}>reroll all</button>
       <p>
-        You are a {department} {role}.
+        Your department is "{department}". {departData.summary}
       </p>
-      <button onClick={reroll}>reroll</button>
       <p>
-        Here are your starting skills.{" "}
-        {!skillsOk ? `Please assign ${remainingSkillPoints} skill points.` : ""}
+        You get one point in {departData.skills[0]} and {departData.skills[1]}.
+      </p>
+      <p>
+        Instinct (applies when your Stress Gauge is full ) -{" "}
+        {departData.instinct}
+      </p>
+      <p>
+        Your past role is "{role}". {rData.summary}
+      </p>
+      <p>
+        You get one point in {rData.skills[0]} and {rData.skills[1]}.
+      </p>
+      <p>
+        {!skillsOk ? `Please assign ${remainingSkillPoints} additional skill point${remainingSkillPoints == 2 ? "s" : ""}.` : ""}
         {skillsOk ? <button onClick={resetSkills}>reset skills</button> : null}
       </p>
       <div className={`grid ${colClass}`}>
@@ -85,7 +99,7 @@ export function CreationWizard({
         <p>Please choose a forename and a surname.</p>
         <p>Forenames:</p>
         <ul className="list-disc list-inside">
-          {departmentsData[department].naming.forenames.map((t) => (
+          {departData.naming.forenames.map((t) => (
             <li>{t}</li>
           ))}
         </ul>
@@ -96,7 +110,7 @@ export function CreationWizard({
         />
         <p>Surname:</p>
         <ul className="list-disc list-inside">
-          {departmentsData[department].naming.surname.map((t) => (
+          {departData.naming.surname.map((t) => (
             <li>{t}</li>
           ))}
         </ul>

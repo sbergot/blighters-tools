@@ -13,6 +13,7 @@ function App() {
     setPlayer(p);
     setMode("display");
   }
+
   return (
     <div className="m-4">
       {mode == "wizard" ? <CreationWizard savePlayer={savePlayer} /> : null}
