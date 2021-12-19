@@ -46,6 +46,7 @@ export type SkillSet = Record<SkillName, Skill>;
 
 export interface Gear {
     name: string;
+    description?: string;
 }
 
 export type Gauge = number;
