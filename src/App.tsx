@@ -15,7 +15,7 @@ function App() {
   }
 
   return (
-    <div className="m-4">
+    <div className="p-4 mx-auto max-w-2xl">
       {mode == "wizard" ? <CreationWizard savePlayer={savePlayer} /> : null}
       {mode == "display" && player != null ? <PlayerSheet player={player} /> : null}
     </div>
