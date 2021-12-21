@@ -86,15 +86,15 @@ export function CreationWizard({
           Your department is "{department}". {departData.summary} You get one
           point in {departData.skills[0]} and {departData.skills[1]}.
         </p>
-        <p>
-          Instinct (applies when your Stress Gauge is full ) -{" "}
-          {departData.instinct}
+        <p className="mt-2">
+          Instinct (applies when your Stress Gauge is full )
         </p>
-        <p>
+        <p>{departData.instinct}</p>
+        <p className="mt-2">
           Your past role is "{role}". {rData.summary} You get one point in{" "}
           {rData.skills[0]} and {rData.skills[1]}.
         </p>
-        <p>
+        <p className="mt-2">
           You get the following unique gears:
           <ul className="list-disc list-inside">
             {uniqueGear.map((g) => (
@@ -128,18 +128,18 @@ export function CreationWizard({
       <Step title="Name" headerChildren={saveCharBtn}>
         <div>
           <div className="mb-4">
-          <p>Please choose a forename and a surname.</p>
-          <p>Forenames:</p>
-          <ul className="list-disc list-inside">
-            {departData.naming.forenames.map((t) => (
-              <li>{t}</li>
-            ))}
-          </ul>
-          <input
-            className="border border-black my-2 p-1"
-            value={player.firstname}
-            onChange={(e) => setForename(e.currentTarget.value)}
-          />
+            <p>Please choose a forename and a surname.</p>
+            <p>Forenames:</p>
+            <ul className="list-disc list-inside">
+              {departData.naming.forenames.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+            <input
+              className="border border-black my-2 p-1"
+              value={player.firstname}
+              onChange={(e) => setForename(e.currentTarget.value)}
+            />
           </div>
           <p>Surname:</p>
           <ul className="list-disc list-inside">
