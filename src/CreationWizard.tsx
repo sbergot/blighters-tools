@@ -127,6 +127,7 @@ export function CreationWizard({
       </Step>
       <Step title="Name" headerChildren={saveCharBtn}>
         <div>
+          <div className="mb-4">
           <p>Please choose a forename and a surname.</p>
           <p>Forenames:</p>
           <ul className="list-disc list-inside">
@@ -135,10 +136,11 @@ export function CreationWizard({
             ))}
           </ul>
           <input
-            className="border"
+            className="border border-black my-2 p-1"
             value={player.firstname}
             onChange={(e) => setForename(e.currentTarget.value)}
           />
+          </div>
           <p>Surname:</p>
           <ul className="list-disc list-inside">
             {departData.naming.surname.map((t) => (
@@ -146,7 +148,7 @@ export function CreationWizard({
             ))}
           </ul>
           <input
-            className="border"
+            className="border border-black my-2 p-1"
             value={player.lastname}
             onChange={(e) => setSurname(e.currentTarget.value)}
           />

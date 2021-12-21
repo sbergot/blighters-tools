@@ -62,7 +62,7 @@ export function Button({
   onClick,
   disabled
 }: Children & { onClick: () => void; disabled?: boolean }) {
-    const colors = disabled ? "bg-gray-500 hover:bg-gray-700 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-700";
+    const colors = disabled ? "bg-gray-500 hover:bg-gray-700 cursor-not-allowed" : "bg-orange-500 hover:bg-orange-700";
   return <button
     className={`${colors} text-white text-sm font-bold py-1 px-2 rounded`}
     onClick={disabled ? () => {} : onClick}
