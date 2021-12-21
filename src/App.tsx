@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="p-4 mx-auto max-w-2xl">
       <h1 className="text-6xl">Blighters creation tool</h1>
-      <h2>Blighters is a tabletop rpg by Chris McDowal</h2>
+      <h2>Blighters is a tabletop rpg by Chris McDowall</h2>
       <a className="text-orange-700" href="https://www.bastionland.com/">
         https://www.bastionland.com/
       </a>
