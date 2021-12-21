@@ -40,7 +40,7 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "Buzzgun" }, { name: "mo-scan" }] },
+      soldier: { gears: [{ name: "buzzgun" }, { name: "mo-scan" }] },
       researcher: {
         gears: [{ name: "omnichem printer" }, { name: "cadaver-scanner" }],
       },
@@ -160,15 +160,19 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "Buzzgun" }, { name: "mo-scan" }] },
+      soldier: { gears: [{ name: "ripper gun" }, { name: "battle-body" }] },
       researcher: {
-        gears: [{ name: "omnichem printer" }, { name: "cadaver-scanner" }],
+        gears: [{ name: "genius-suite" }, { name: "chem-sense" }],
       },
-      operator: { gears: [{ name: "nano-veil" }, { name: "cryo-skin" }] },
-      engineer: { gears: [{ name: "tool-printer" }, { name: "snitch-chip" }] },
-      advisor: { gears: [{ name: "social-web" }, { name: "forget-me-rod" }] },
+      operator: {
+        gears: [{ name: "cyber-halo" }, { name: "virtual black box" }],
+      },
+      engineer: {
+        gears: [{ name: "technical addons" }, { name: "mind-shackle" }],
+      },
+      advisor: { gears: [{ name: "human-droid-interface" }] },
       pioneer: {
-        gears: [{ name: "holo-projector" }, { name: "feather-belt" }],
+        gears: [{ name: "Future Materials" }, { name: "Eternal Cells" }],
       },
     },
   },
@@ -185,15 +189,21 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "Buzzgun" }, { name: "mo-scan" }] },
-      researcher: {
-        gears: [{ name: "omnichem printer" }, { name: "cadaver-scanner" }],
+      soldier: {
+        gears: [{ name: "hunting rifle" }, { name: "predator gland" }],
       },
-      operator: { gears: [{ name: "nano-veil" }, { name: "cryo-skin" }] },
-      engineer: { gears: [{ name: "tool-printer" }, { name: "snitch-chip" }] },
-      advisor: { gears: [{ name: "social-web" }, { name: "forget-me-rod" }] },
+      researcher: {
+        gears: [{ name: "splicing kit" }, { name: "splice-critter" }],
+      },
+      operator: {
+        gears: [{ name: "prionic amplifier" }, { name: "universal-cells" }],
+      },
+      engineer: {
+        gears: [{ name: "mule-gene" }, { name: "limit-break gland" }],
+      },
+      advisor: { gears: [{ name: "savant-gene" }, { name: "gene-scent" }] },
       pioneer: {
-        gears: [{ name: "holo-projector" }, { name: "feather-belt" }],
+        gears: [{ name: "blink-gene" }, { name: "night sight" }],
       },
     },
   },

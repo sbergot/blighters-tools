@@ -18,6 +18,8 @@ export function CreationWizard({
   const departData = departmentsData[department];
   const rData = rolesData[role];
 
+  const uniqueGear = departData.perRole[role].gears;
+
   function addSkill(skillName: SkillName) {
     setRemainingSkillPoints((p) => p - 1);
     setPlayer({
@@ -67,31 +69,39 @@ export function CreationWizard({
     </Button>
   );
 
+  function onSavePlayer() {
+    const newPlayer = { ...player, gears: [...player.gears, ...uniqueGear] };
+    savePlayer(newPlayer);
+  }
+
   const saveCharBtn = (
-    <Button
-      onClick={() => savePlayer(player)}
-      disabled={!skillsOk || !namingOk}
-    >
+    <Button onClick={onSavePlayer} disabled={!skillsOk || !namingOk}>
       Save character
     </Button>
   );
   return (
     <div>
       <Step title="Department & Role" headerChildren={rerollBtn}>
-        <div>
-          <p>
-            Your department is "{department}". {departData.summary} You get one
-            point in {departData.skills[0]} and {departData.skills[1]}.
-          </p>
-          <p>
-            Instinct (applies when your Stress Gauge is full ) -{" "}
-            {departData.instinct}
-          </p>
-          <p>
-            Your past role is "{role}". {rData.summary} You get one point in{" "}
-            {rData.skills[0]} and {rData.skills[1]}.
-          </p>
-        </div>
+        <p>
+          Your department is "{department}". {departData.summary} You get one
+          point in {departData.skills[0]} and {departData.skills[1]}.
+        </p>
+        <p>
+          Instinct (applies when your Stress Gauge is full ) -{" "}
+          {departData.instinct}
+        </p>
+        <p>
+          Your past role is "{role}". {rData.summary} You get one point in{" "}
+          {rData.skills[0]} and {rData.skills[1]}.
+        </p>
+        <p>
+          You get the following unique gears:
+          <ul className="list-disc list-inside">
+            {uniqueGear.map((g) => (
+              <li>{g.name}</li>
+            ))}
+          </ul>
+        </p>
       </Step>
       <Step title="Skills" headerChildren={resetSkillsBtn}>
         <p>
