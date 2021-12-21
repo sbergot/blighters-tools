@@ -87,7 +87,7 @@ export function CreationWizard({
           point in {departData.skills[0]} and {departData.skills[1]}.
         </p>
         <p className="mt-2">
-          Instinct (applies when your Stress Gauge is full )
+          Instinct (applies when your Stress Gauge is full)
         </p>
         <p>{departData.instinct}</p>
         <p className="mt-2">

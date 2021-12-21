@@ -11,17 +11,17 @@ export function PlayerSheet({ player }: { player: Player }) {
         {player.department} {player.role}
       </p>
       <div className="flex">
-      <div className="grid grid-cols-2fc">
-        {Object.entries(player.skills).map(([name, value]) => {
-          return (
-            <>
-              <div>{name}</div>
-              <SkillLevel level={value} />
-            </>
-          );
-        })}
-      </div>
-        <div className="flex ml-4">
+        <div className="grid grid-cols-2fc">
+          {Object.entries(player.skills).map(([name, value]) => {
+            return (
+              <>
+                <div>{name}</div>
+                <SkillLevel level={value} />
+              </>
+            );
+          })}
+        </div>
+        <div className="flex ml-8">
           {Object.entries(player.gauges).map(([name, value]) => {
             return <Gauge name={name} value={value} />;
           })}
