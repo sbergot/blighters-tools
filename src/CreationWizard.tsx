@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { departmentsData, rolesData, skillNames } from "./Data";
+import { departmentsData, rolesData, skillData, skillNames } from "./Data";
 import { GeneratePlayer, InitSkills } from "./PlayerGenerator";
 import { Button, SkillLevel, Step } from "./SharedComponents";
 import { Gear, Player, SkillName } from "./Types";
@@ -76,7 +76,6 @@ export function CreationWizard({
   const skillsOk = remainingSkillPoints == 0;
   const namingOk = player.firstname != "" && player.lastname != "";
 
-  const colClass = !skillsOk ? "grid-cols-3fc" : "grid-cols-2fc";
   const rerollBtn = <Button onClick={reroll}>reroll</Button>;
 
   const resetSkillsBtn = (
@@ -99,28 +98,32 @@ export function CreationWizard({
     <div>
       <Step title="Department & Role" headerChildren={rerollBtn}>
         <p>
-          Your department is "{department}". {departData.summary} {departData.description} You get one
-          point in {departData.skills[0]} and {departData.skills[1]}.
+          Your department is "{department}". {departData.summary}{" "}
+          {departData.description} You get one point in {departData.skills[0]}{" "}
+          and {departData.skills[1]}.
         </p>
         <p className="mt-2">
-          Instinct (applies when your Stress Gauge is full):{" "}
-          <span className="font-bold">{departData.instinct.name}</span>
+          Instinct (applies when your Stress Gauge is full):
         </p>
-        <p>{departData.instinct.description}</p>
+        <p>
+          <span className="font-bold">{departData.instinct.name}</span> -{" "}
+          {departData.instinct.description}
+        </p>
         <p className="mt-2">
           Your past role is "{role}". {rData.summary} You get one point in{" "}
           {rData.skills[0]} and {rData.skills[1]}.
         </p>
-        <p className="mt-2">
+        <div className="mt-2">
           You get the following unique gears:
           <ul className="list-disc list-inside">
             {uniqueGear.map((g) => (
               <GearE gear={g} />
             ))}
           </ul>
-        </p>
+        </div>
       </Step>
       <Step title="Skills" headerChildren={resetSkillsBtn}>
+        <div className="flex flex-col">
         <p>
           {!skillsOk
             ? `Please assign ${remainingSkillPoints} additional skill point${
@@ -128,18 +131,24 @@ export function CreationWizard({
               }.`
             : "All skill points assigned."}
         </p>
-        <div className={`grid ${colClass}`}>
+        <div className={`inline-grid grid-cols-2fc max-w-xs self-center`}>
           {skillNames.map((name) => {
             return (
               <>
-                <div>{name}</div>
-                <SkillLevel level={player.skills[name]} />
-                {!skillsOk ? (
-                  <button onClick={() => addSkill(name)}>+</button>
-                ) : null}
+                <div className="mt-2">
+                  <span className="font-bold">{name}</span>
+                </div>
+                <div className="mt-3 ml-8">
+                  <SkillLevel level={player.skills[name]} />
+                  {!skillsOk ? (
+                    <button onClick={() => addSkill(name)}>+</button>
+                  ) : null}
+                </div>
+                <p className="col-span-2">{skillData[name].description}</p>
               </>
             );
           })}
+        </div>
         </div>
       </Step>
       <Step title="Name" headerChildren={saveCharBtn}>

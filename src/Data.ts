@@ -6,15 +6,15 @@ import {
   SkillName,
 } from "./Types";
 
-export const skillData: Record<SkillName, {}> = {
-  data: {},
-  deception: {},
-  empathy: {},
-  force: {},
-  hardware: {},
-  influence: {},
-  movement: {},
-  software: {},
+export const skillData: Record<SkillName, { description: string }> = {
+  data: { description: "Research and analysis" },
+  deception: { description: "Concealment and falsehood" },
+  empathy: { description: "Networking and relationships" },
+  force: { description: "Destruction and subdual" },
+  hardware: { description: "Repair and graft" },
+  influence: { description: "Persuasion and rhetoric" },
+  movement: { description: "Speed and agility" },
+  software: { description: "Terminals and networks" },
 };
 
 export const departmentsData: Record<DepartmentName, DepartementData> = {
@@ -39,7 +39,7 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       surname: [
         {
           trick: "A city behind a surname prefix",
-          exemples: ["Van Paris, O’Lahore"],
+          exemples: ["Van Paris", "O’Lahore"],
         },
         {
           trick: "Compound of a positive adjective and noun",
@@ -458,7 +458,7 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
         },
       ],
       surname: [
-        { trick: "Two numbers", exemples: ["9-2, 1-14"] },
+        { trick: "Two numbers", exemples: ["9-2", "1-14"] },
         {
           trick: "An old computer function or part",
           exemples: ["Write", "Valve"],
