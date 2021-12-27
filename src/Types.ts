@@ -49,7 +49,7 @@ export interface Element {
 }
 
 export interface Gear extends Element {
-  options?: string[]
+  options?: string[];
 }
 
 export type Gauge = number;
@@ -62,4 +62,21 @@ export interface PlayerGauges {
 export interface TeamGauge {
   heat: Gauge;
   cost: Gauge;
+}
+
+export interface DepartementData {
+  skills: SkillName[];
+  summary: string;
+  description: string;
+  instinct: Element;
+  naming: {
+    forenames: string[];
+    surname: string[];
+  };
+  perRole: Record<RoleName, { gears: Gear[] }>;
+}
+
+export interface RoleData {
+  skills: SkillName[];
+  summary: string;
 }

@@ -1,4 +1,10 @@
-import { DepartmentName, Element, Gear, RoleName, SkillName } from "./Types";
+import {
+  DepartementData,
+  DepartmentName,
+  RoleData,
+  RoleName,
+  SkillName,
+} from "./Types";
 
 export const skillData: Record<SkillName, {}> = {
   data: {},
@@ -11,22 +17,13 @@ export const skillData: Record<SkillName, {}> = {
   software: {},
 };
 
-interface DepartementData {
-  skills: SkillName[];
-  summary: string;
-  instinct: Element;
-  naming: {
-    forenames: string[];
-    surname: string[];
-  };
-  perRole: Record<RoleName, { gears: Gear[] }>;
-}
-
 export const departmentsData: Record<DepartmentName, DepartementData> = {
   corporate: {
     skills: ["deception", "influence"],
     summary:
       "Part of the capitalist machine that owns most of Earth and its orbit.",
+    description:
+      "You were a part of a cutthroat world where ambition and influence are everything.",
     instinct: {
       name: "PARANOIA",
       description: "Danger Rolls you make with allies present are Skill 0.",
@@ -129,6 +126,8 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
   union: {
     skills: ["empathy", "force"],
     summary: "Communities of workers fighting their cause.",
+    description:
+      "You were part of an Industrial Union fiercely protecting a common interest and community.",
     instinct: {
       name: "DEPENDENCY",
       description: "Danger Rolls you attempt on your own are Skill 0.",
@@ -232,6 +231,8 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
   naval: {
     skills: ["force", "hardware"],
     summary: "Private military fleets for hire.",
+    description:
+      "You were part of a contracted private military that holds no permanent allegiance.",
     instinct: {
       name: "HOSTILITY",
       description: "All Danger Rolls other than attacks are Skill 0.",
@@ -330,6 +331,8 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
   council: {
     skills: ["influence", "software"],
     summary: "Chambers of mediators and lawmakers.",
+    description:
+      "You’re from the halls of an organisation seeking consensus between corporations, navies, and unions.",
     instinct: {
       name: "CONTROL",
       description:
@@ -430,6 +433,8 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
   android: {
     skills: ["data", "software"],
     summary: "Mechanical beings free from their service.",
+    description:
+      "You were built for a purpose, but you’re free from your service. You don’t have organic needs.",
     instinct: {
       name: "OBSESSION",
       description:
@@ -524,6 +529,8 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     skills: ["deception", "movement"],
     summary:
       "Genetically Engineered Organisms taking humanity beyond its limits.",
+    description:
+      "The legality of your existence is a grey area but you’re better off keeping a low profile.",
     instinct: {
       name: "FEAR",
       description: "Any actions in the view of a non-Ally are Skill 0.",
@@ -619,10 +626,7 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
   },
 };
 
-export const rolesData: Record<
-  RoleName,
-  { skills: SkillName[]; summary: string }
-> = {
+export const rolesData: Record<RoleName, RoleData> = {
   soldier: {
     skills: ["force", "movement"],
     summary: "You fought for something.",
