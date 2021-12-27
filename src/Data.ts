@@ -150,6 +150,13 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
             name: "Multi-Gun",
             description:
               "Freely switch between three modes. The transformation takes a few moments:",
+            options: [
+              "Storm-Mode (2E, blasts an area with electricity)",
+
+              "Plas-Mode (3E, Tick 1 Hurt on a Fail)",
+
+              "Thermo-Mode (2E, burn through anything)",
+            ],
           },
         ],
       },
@@ -258,6 +265,13 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
             name: "Stim Gun",
             description:
               "Dose lasts for one action and causes 1 Stress when it wears off",
+            options: [
+              "Beast: +2 Movement",
+
+              "Calm: Temporarily ignore all Stress and Trauma but you can’t speak.",
+
+              "Recall: You have perfect memory recall.",
+            ],
           },
         ],
       },
@@ -538,6 +552,7 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
             name: "Splicing Kit",
             description:
               "Inject another being to give them a short term alteration:",
+            options: ["Water Breathing", "Acidic Spit", "Toxin immunity"],
           },
           {
             name: "Splice-Critter",
@@ -551,6 +566,9 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
           {
             name: "Psionic Amplifier",
             description: "•	Tick 1 Stress to get a Vision.",
+            options: [
+              "Tick 2 Stress to unleash telekinesis, pyrokinesis, or telepathy.",
+            ],
           },
           {
             name: "Universal-Cells",

@@ -48,7 +48,9 @@ export interface Element {
   description?: string;
 }
 
-export interface Gear extends Element {}
+export interface Gear extends Element {
+  options?: string[]
+}
 
 export type Gauge = number;
 
