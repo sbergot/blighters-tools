@@ -2,9 +2,25 @@ import { useState } from "react";
 import { departmentsData, rolesData, skillNames } from "./Data";
 import { GeneratePlayer, InitSkills } from "./PlayerGenerator";
 import { Button, SkillLevel, Step } from "./SharedComponents";
-import { Player, SkillName } from "./Types";
+import { Gear, Player, SkillName } from "./Types";
 
 const additionalSkills = 2;
+
+function GearE({ gear }: { gear: Gear }) {
+  return (
+    <div>
+      <span className="font-bold">{gear.name}</span>
+      {gear.description && ` - ${gear.description}`}
+      {gear.options && (
+        <ul className="list-disc list-inside ml-4">
+          {gear.options.map((opt) => (
+            <li>{opt}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export function CreationWizard({
   savePlayer,
@@ -83,11 +99,12 @@ export function CreationWizard({
     <div>
       <Step title="Department & Role" headerChildren={rerollBtn}>
         <p>
-          Your department is "{department}". {departData.summary} You get one
+          Your department is "{department}". {departData.summary} {departData.description} You get one
           point in {departData.skills[0]} and {departData.skills[1]}.
         </p>
         <p className="mt-2">
-          Instinct (applies when your Stress Gauge is full): <span className="font-bold">{departData.instinct.name}</span>
+          Instinct (applies when your Stress Gauge is full):{" "}
+          <span className="font-bold">{departData.instinct.name}</span>
         </p>
         <p>{departData.instinct.description}</p>
         <p className="mt-2">
@@ -98,7 +115,7 @@ export function CreationWizard({
           You get the following unique gears:
           <ul className="list-disc list-inside">
             {uniqueGear.map((g) => (
-              <li>{g.name}</li>
+              <GearE gear={g} />
             ))}
           </ul>
         </p>
@@ -132,24 +149,30 @@ export function CreationWizard({
             <p>Forenames:</p>
             <ul className="list-disc list-inside">
               {departData.naming.forenames.map((t) => (
-                <li>{t}</li>
+                <li>
+                  {t.trick} ({t.exemples.join(", ")})
+                </li>
               ))}
             </ul>
             <input
               className="border border-black my-2 p-1"
               value={player.firstname}
+              placeholder={departData.naming.forenames[0].exemples[0]}
               onChange={(e) => setForename(e.currentTarget.value)}
             />
           </div>
           <p>Surname:</p>
           <ul className="list-disc list-inside">
             {departData.naming.surname.map((t) => (
-              <li>{t}</li>
+              <li>
+                {t.trick} ({t.exemples.join(", ")})
+              </li>
             ))}
           </ul>
           <input
             className="border border-black my-2 p-1"
             value={player.lastname}
+            placeholder={departData.naming.surname[0].exemples[0]}
             onChange={(e) => setSurname(e.currentTarget.value)}
           />
         </div>

@@ -64,14 +64,19 @@ export interface TeamGauge {
   cost: Gauge;
 }
 
+interface Naming {
+  trick: string,
+  exemples: string[],
+}
+
 export interface DepartementData {
   skills: SkillName[];
   summary: string;
   description: string;
   instinct: Element;
   naming: {
-    forenames: string[];
-    surname: string[];
+    forenames: Naming[];
+    surname: Naming[];
   };
   perRole: Record<RoleName, { gears: Gear[] }>;
 }

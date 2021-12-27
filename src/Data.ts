@@ -30,12 +30,21 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     naming: {
       forenames: [
-        "Two letters spelled phonetically (Aybee, Wyar)",
-        "A fancy colour (Ochre, Sepia)",
+        {
+          trick: "Two letters spelled phonetically",
+          exemples: ["Aybee", "Wyar"],
+        },
+        { trick: "A fancy colour", exemples: ["Ochre", "Sepia"] },
       ],
       surname: [
-        "A city behind a surname prefix (Van Paris, O’Lahore)",
-        "Compound of a positive adjective and noun (Brightpath, Clearbar)",
+        {
+          trick: "A city behind a surname prefix",
+          exemples: ["Van Paris, O’Lahore"],
+        },
+        {
+          trick: "Compound of a positive adjective and noun",
+          exemples: ["Brightpath", "Clearbar"],
+        },
       ],
     },
     perRole: {
@@ -134,12 +143,12 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     naming: {
       forenames: [
-        "An animal, or shortened version (Gull, Roo)",
-        "Common modern surname (Smith, Martinez)",
+        { trick: "An animal, or shortened version", exemples: ["Gull", "Roo"] },
+        { trick: "Common modern surname", exemples: ["Smith", "Martinez"] },
       ],
       surname: [
-        "A moon or star (Antares, Miranda)",
-        "Shortened colony name (Briggton, Fortvega)",
+        { trick: "A moon or star", exemples: ["Antares", "Miranda"] },
+        { trick: "Shortened colony name", exemples: ["Briggton", "Fortvega"] },
       ],
     },
     perRole: {
@@ -239,12 +248,12 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     naming: {
       forenames: [
-        "An affectionate nickname (Chopper, Ace)",
-        "An insulting nickname (Squirt, Grunt)",
+        { trick: "An affectionate nickname", exemples: ["Chopper", "Ace"] },
+        { trick: "An insulting nickname", exemples: ["Squirt", "Grunt"] },
       ],
       surname: [
-        "Bodypart descriptor (Surehand, Firehead)",
-        "Dress descriptor (Redsash, Cloaker)",
+        { trick: "Bodypart descriptor", exemples: ["Surehand", "Firehead"] },
+        { trick: "Dress descriptor", exemples: ["Redsash", "Cloaker"] },
       ],
     },
     perRole: {
@@ -340,12 +349,12 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     naming: {
       forenames: [
-        "A traditional virtue (Temperance, Serenity)",
-        "A prestigious animal (Dove, Lion)",
+        { trick: "A traditional virtue", exemples: ["Temperance", "Serenity"] },
+        { trick: "A prestigious animal", exemples: ["Dove", "Lion"] },
       ],
       surname: [
-        "A building material (Slate, Pine)",
-        "An outdated profession (Fletcher, Miller)",
+        { trick: "A building material", exemples: ["Slate", "Pine"] },
+        { trick: "An outdated profession", exemples: ["Fletcher", "Miller"] },
       ],
     },
     perRole: {
@@ -442,12 +451,18 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     naming: {
       forenames: [
-        "Nature noun (Leaf, River)",
-        "Extended phonetic version of a letter (Beeb, Esso, Ellie)",
+        { trick: "Nature noun", exemples: ["Leaf", "River"] },
+        {
+          trick: "Extended phonetic version of a letter",
+          exemples: ["Beeb", "Esso", "Ellie"],
+        },
       ],
       surname: [
-        "Two numbers (9-2, 1-14)",
-        "An old computer function or part (Write, Valve)",
+        { trick: "Two numbers", exemples: ["9-2, 1-14"] },
+        {
+          trick: "An old computer function or part",
+          exemples: ["Write", "Valve"],
+        },
       ],
     },
     perRole: {
@@ -536,10 +551,16 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       description: "Any actions in the view of a non-Ally are Skill 0.",
     },
     naming: {
-      forenames: ["An action verb (Dash, Spike)"],
+      forenames: [{ trick: "An action verb", exemples: ["Dash", "Spike"] }],
       surname: [
-        "Mangled latin animal family/genus (Pantero, Canis, Ursida)",
-        "Shortened version of a chemical element (Alumi, Titan, Cyan)",
+        {
+          trick: "Mangled latin animal family/genus",
+          exemples: ["Pantero", "Canis", "Ursida"],
+        },
+        {
+          trick: "Shortened version of a chemical element",
+          exemples: ["Alumi", "Titan", "Cyan"],
+        },
       ],
     },
     perRole: {
