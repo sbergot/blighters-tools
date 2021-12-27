@@ -65,8 +65,8 @@ export interface TeamGauge {
 }
 
 interface Naming {
-  trick: string,
-  exemples: string[],
+  trick: string;
+  exemples: string[];
 }
 
 export interface DepartementData {
@@ -74,6 +74,7 @@ export interface DepartementData {
   summary: string;
   description: string;
   instinct: Element;
+  random_things: { prob: number; description: string }[];
   naming: {
     forenames: Naming[];
     surname: Naming[];
