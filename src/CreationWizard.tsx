@@ -87,9 +87,9 @@ export function CreationWizard({
           point in {departData.skills[0]} and {departData.skills[1]}.
         </p>
         <p className="mt-2">
-          Instinct (applies when your Stress Gauge is full)
+          Instinct (applies when your Stress Gauge is full): <span className="font-bold">{departData.instinct.name}</span>
         </p>
-        <p>{departData.instinct}</p>
+        <p>{departData.instinct.description}</p>
         <p className="mt-2">
           Your past role is "{role}". {rData.summary} You get one point in{" "}
           {rData.skills[0]} and {rData.skills[1]}.

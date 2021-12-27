@@ -1,4 +1,4 @@
-import { DepartmentName, Gear, RoleName, SkillName } from "./Types";
+import { DepartmentName, Element, Gear, RoleName, SkillName } from "./Types";
 
 export const skillData: Record<SkillName, {}> = {
   data: {},
@@ -14,7 +14,7 @@ export const skillData: Record<SkillName, {}> = {
 interface DepartementData {
   skills: SkillName[];
   summary: string;
-  instinct: string;
+  instinct: Element;
   naming: {
     forenames: string[];
     surname: string[];
@@ -27,8 +27,10 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     skills: ["deception", "influence"],
     summary:
       "Part of the capitalist machine that owns most of Earth and its orbit.",
-    instinct:
-      "PARANOIA: Danger Rolls you make with allies present are Skill 0.",
+    instinct: {
+      name: "PARANOIA",
+      description: "Danger Rolls you make with allies present are Skill 0.",
+    },
     naming: {
       forenames: [
         "Two letters spelled phonetically (Aybee, Wyar)",
@@ -40,22 +42,97 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "buzzgun" }, { name: "mo-scan" }] },
-      researcher: {
-        gears: [{ name: "omnichem printer" }, { name: "cadaver-scanner" }],
+      soldier: {
+        gears: [
+          {
+            name: "buzzgun",
+            description: "2E or Crash all software on the target’s devices.",
+          },
+          {
+            name: "mo-scan",
+            description:
+              "Your device has a motion sensor that sweeps a 90 degree arc in front of you.",
+          },
+        ],
       },
-      operator: { gears: [{ name: "nano-veil" }, { name: "cryo-skin" }] },
-      engineer: { gears: [{ name: "tool-printer" }, { name: "snitch-chip" }] },
-      advisor: { gears: [{ name: "social-web" }, { name: "forget-me-rod" }] },
+      researcher: {
+        gears: [
+          {
+            name: "omnichem printer",
+            description:
+              "You have your own Printer (with its own Gauge) that can print small flasks of Chemicals as needed.",
+          },
+          {
+            name: "cadaver-scanner",
+            description:
+              "Insert spike into a corpse to get a readout of its likely cause of death.",
+          },
+        ],
+      },
+      operator: {
+        gears: [
+          {
+            name: "Nano-Veil",
+            description:
+              "Mask your face to resemble somebody whose face you have stored on your Device.",
+          },
+          {
+            name: "Cryo-Skin",
+            description:
+              "You do not show on scans for life signs or heat signature.",
+          },
+        ],
+      },
+      engineer: {
+        gears: [
+          {
+            name: "Tool-Printer",
+            description:
+              "You have your own Printer (with a Gauge) that can only print tools.",
+          },
+          {
+            name: "Snitch-Chip",
+            description:
+              "Your device alerts you when somebody nearby is breaking protocol.",
+          },
+        ],
+      },
+      advisor: {
+        gears: [
+          {
+            name: "Social-Web",
+            description:
+              "Scan two individuals with your device to give a readout of their relationship.",
+          },
+          {
+            name: "Forget-me-Rod",
+            description:
+              "Discharge into an incapacitated or sleeping being. They don’t remember you when they wake.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "holo-projector" }, { name: "feather-belt" }],
+        gears: [
+          {
+            name: "Holo-Projector",
+            description:
+              "Your device can project a hologram of yourself and displays what they see.",
+          },
+          {
+            name: "Feather-Belt",
+            description: "You can fall any distance and land softly.",
+          },
+        ],
       },
     },
   },
   union: {
     skills: ["empathy", "force"],
     summary: "Communities of workers fighting their cause.",
-    instinct: "DEPENDENCY: Danger Rolls you attempt on your own are Skill 0.",
+    instinct: {
+      name: "DEPENDENCY",
+      description: "Danger Rolls you attempt on your own are Skill 0.",
+    },
     naming: {
       forenames: [
         "An animal, or shortened version (Gull, Roo)",
@@ -67,26 +144,91 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "multi-gun" }] },
+      soldier: {
+        gears: [
+          {
+            name: "Multi-Gun",
+            description:
+              "Freely switch between three modes. The transformation takes a few moments:",
+          },
+        ],
+      },
       researcher: {
-        gears: [{ name: "cyclo-visor" }, { name: "stem-harvester" }],
+        gears: [
+          {
+            name: "Cyclop-Visor",
+            description:
+              "Sweeps your vision for life forms. Can see through one wall.",
+          },
+          {
+            name: "Stem-Harvester",
+            description:
+              "Drains a recent human corpse to create a med-shot that restores 3 Hurt from the target.",
+          },
+        ],
       },
       operator: {
-        gears: [{ name: "emergency jammer" }, { name: "leech-bank" }],
+        gears: [
+          {
+            name: "Emergency Jammer",
+            description: "Shuts down all powered devices in the nearby area.",
+          },
+          {
+            name: "Leech-Bank",
+            description:
+              "Can drain and store power from anything up to a small vessel.",
+          },
+        ],
       },
       engineer: {
-        gears: [{ name: "weaponised toolbelt" }, { name: "labour shackle" }],
+        gears: [
+          {
+            name: "Weaponised Toolbelt",
+            description: "+1E when using a tool as a weapon.",
+          },
+          {
+            name: "Labour Shackle",
+            description:
+              "Commit yourself to a task to get +1d on rolls, but take 1 Hurt if you step away without completing it.",
+          },
+        ],
       },
-      advisor: { gears: [{ name: "inquisitor-lens" }, { name: "mind charm" }] },
+      advisor: {
+        gears: [
+          {
+            name: "Inquisitor-Lens",
+            description:
+              "Ask if somebody is lying. If they are they take 1 Stress, otherwise you do.",
+          },
+          {
+            name: "Mind Charm",
+            description: "Your mind is shielded from any sort of interference.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "colosso-borer" }, { name: "grav-belt" }],
+        gears: [
+          {
+            name: "Colosso-Borer",
+            description:
+              "Loudly blast a man-sized hole through any surface. Takes a few moments to recharge.",
+          },
+          {
+            name: "Grav-Belt",
+            description:
+              "You always have just enough gravity, and don’t suffer harm from falling.",
+          },
+        ],
       },
     },
   },
   naval: {
     skills: ["force", "hardware"],
     summary: "Private military fleets for hire.",
-    instinct: "HOSTILITY: All Danger Rolls other than attacks are Skill 0.",
+    instinct: {
+      name: "HOSTILITY",
+      description: "All Danger Rolls other than attacks are Skill 0.",
+    },
     naming: {
       forenames: [
         "An affectionate nickname (Chopper, Ace)",
@@ -99,26 +241,86 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     perRole: {
       soldier: {
-        gears: [{ name: "breaching carbine" }, { name: "pulse sensor" }],
+        gears: [
+          {
+            name: "Breaching Carbine",
+            description: "2E, blast through walls.",
+          },
+          {
+            name: "Pulse Sensor",
+            description: "Can sense a heartbeat through walls.",
+          },
+        ],
       },
       researcher: {
-        gears: [{ name: "stim gun" }],
+        gears: [
+          {
+            name: "Stim Gun",
+            description:
+              "Dose lasts for one action and causes 1 Stress when it wears off",
+          },
+        ],
       },
-      operator: { gears: [{ name: "shock pistol" }, { name: "alarm-spike" }] },
+      operator: {
+        gears: [
+          {
+            name: "Shock Pistol",
+            description:
+              "1E, -1d at Long Range, and can temporarily fry a machine.",
+          },
+          {
+            name: "Alarm-Spike",
+            description: "When spiked into a network all alarms are triggered.",
+          },
+        ],
+      },
       engineer: {
-        gears: [{ name: "unifoam gun" }, { name: "quartermaster forge" }],
+        gears: [
+          {
+            name: "Unifoam Gun",
+            description:
+              "Fire rapidly hardening foam to plug a breach or cocoon a subdued creature (1E).",
+          },
+          {
+            name: "Quartermaster Forge",
+            description:
+              "A mobile Printer with the same function as that on your ship (uses the same Gauge).",
+          },
+        ],
       },
-      advisor: { gears: [{ name: "psychic lash" }, { name: "terror-node" }] },
+      advisor: {
+        gears: [
+          { name: "Psychic Lash", description: "Melee, causes 2 Stress." },
+          {
+            name: "Terror-Node",
+            description:
+              "Touch somebody to get a sense of their biggest current fear.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "torch-gun" }, { name: "micro-fighter" }],
+        gears: [
+          {
+            name: "Torch-Gun",
+            description: "2E. Very short range but burns all in its blast.",
+          },
+          {
+            name: "Micro-Fighter",
+            description:
+              "A small fighter-craft (2E Guns, One Hull-Breaching Torpedo) that flies independently and can be commanded remotely.",
+          },
+        ],
       },
     },
   },
   council: {
     skills: ["influence", "software"],
     summary: "Chambers of mediators and lawmakers.",
-    instinct:
-      "CONTROL: List a three-action plan. Rolls outside the plan are Skill 0.",
+    instinct: {
+      name: "CONTROL",
+      description:
+        "List a three-action plan. Rolls outside the plan are Skill 0.",
+    },
     naming: {
       forenames: [
         "A traditional virtue (Temperance, Serenity)",
@@ -130,25 +332,95 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "suppression gun" }, { name: "body cam" }] },
+      soldier: {
+        gears: [
+          {
+            name: "Suppression Gun",
+            description:
+              "(2E and either blinds or mutes the victim temporarily)",
+          },
+          { name: "Body Cam", description: "With neutral interface" },
+        ],
+      },
       researcher: {
-        gears: [{ name: "precog node" }, { name: "chrono-chip" }],
+        gears: [
+          {
+            name: "Precog Node",
+            description:
+              "Tick 1 Stress to Declare that your last action was just a simulation, rewinding back to before you declared it. You can’t rewind the same action twice.",
+          },
+          {
+            name: "Chrono-Chip",
+            description:
+              "You have perfect sense of time and know if time is being messed with.",
+          },
+        ],
       },
       operator: {
-        gears: [{ name: "transporter pod" }, { name: "parasite spike" }],
+        gears: [
+          {
+            name: "Transporter Pod",
+            description:
+              "Set up in a fixed position. You can teleport back to it at will.",
+          },
+          {
+            name: "Parasite Spike",
+            description:
+              "An android or person that you stab with this immediately follows a single command until they suffer Hurt or Stress.",
+          },
+        ],
       },
-      engineer: { gears: [{ name: "nano-key" }, { name: "crash-prod" }] },
-      advisor: { gears: [{ name: "bound-drone" }, { name: "chip dispenser" }] },
+      engineer: {
+        gears: [
+          {
+            name: "Nano-Key",
+            description:
+              "Can open any locked door, but doesn’t circumvent alarms.",
+          },
+          {
+            name: "Crash-Prod",
+            description: "A few moments of contact hard-reboots any machine.",
+          },
+        ],
+      },
+      advisor: {
+        gears: [
+          {
+            name: "Bound-Drone",
+            description:
+              "Floats next to you and translates between you and any machine.",
+          },
+          {
+            name: "Chip Dispenser",
+            description:
+              "Plant a chip into somebody’s hand to be able to track them and their body readout with your device.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "void suit" }, { name: "sticky-probe" }],
+        gears: [
+          {
+            name: "Void Suit",
+            description:
+              "Transforms into a miniature escape pod when activated, with life support and fuel enough travel within orbit.",
+          },
+          {
+            name: "Sticky-Probe",
+            description:
+              "Small sticky camera with neural link, can be thrown safely.",
+          },
+        ],
       },
     },
   },
   android: {
     skills: ["data", "software"],
     summary: "Mechanical beings free from their service.",
-    instinct:
-      "OBSESSION: The GM puts a question in your head. Until resolved, rolls unrelated to finding the answer are Skill 0",
+    instinct: {
+      name: "OBSESSION",
+      description:
+        "The GM puts a question in your head. Until resolved, rolls unrelated to finding the answer are Skill 0",
+    },
     naming: {
       forenames: [
         "Nature noun (Leaf, River)",
@@ -160,19 +432,77 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
       ],
     },
     perRole: {
-      soldier: { gears: [{ name: "ripper gun" }, { name: "battle-body" }] },
+      soldier: {
+        gears: [
+          { name: "Ripper Gun", description: "(2E, +1d at Point Blank)" },
+          {
+            name: "Battle-Body",
+            description: "Restore your Hurt Gauge once per job.",
+          },
+        ],
+      },
       researcher: {
-        gears: [{ name: "genius-suite" }, { name: "chem-sense" }],
+        gears: [
+          {
+            name: "Genius-Suite",
+            description:
+              "You have all current scientific knowledge and trivia stored, but sometimes it takes a moment to recall.",
+          },
+          {
+            name: "Chem-Sense",
+            description:
+              "You can identify specific chemicals by smell and taste.",
+          },
+        ],
       },
       operator: {
-        gears: [{ name: "cyber-halo" }, { name: "virtual black box" }],
+        gears: [
+          {
+            name: "Cyber-Halo",
+            description:
+              "Wirelessly access nearby devices. Tick 1 Stress to remotely crash a device without arousing suspicion.",
+          },
+          {
+            name: "Virtual Black Box",
+            description:
+              "When you would be killed you can always be restored at a mainframe.",
+          },
+        ],
       },
       engineer: {
-        gears: [{ name: "technical addons" }, { name: "mind-shackle" }],
+        gears: [
+          {
+            name: "Technical Addons",
+            description:
+              "Your body contains a variety of small tools as needed.",
+          },
+          {
+            name: "Mind-Shackle",
+            description: "Ignore Stress from unpleasant situations.",
+          },
+        ],
       },
-      advisor: { gears: [{ name: "human-droid-interface" }] },
+      advisor: {
+        gears: [
+          {
+            name: "Human-Droid-Interface",
+            description:
+              "Hold hands with a human to feel their emotions and desires. You pass for human but have none of their needs.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "Future Materials" }, { name: "Eternal Cells" }],
+        gears: [
+          {
+            name: "Future Materials",
+            description:
+              "Total protection from extremes of heat, corrosive chemicals, and EMP/ radiation.",
+          },
+          {
+            name: "Eternal Cells",
+            description: "You can consume minerals to charge your power.",
+          },
+        ],
       },
     },
   },
@@ -180,7 +510,10 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     skills: ["deception", "movement"],
     summary:
       "Genetically Engineered Organisms taking humanity beyond its limits.",
-    instinct: "FEAR: Any actions in the view of a non-Ally are Skill 0.",
+    instinct: {
+      name: "FEAR",
+      description: "Any actions in the view of a non-Ally are Skill 0.",
+    },
     naming: {
       forenames: ["An action verb (Dash, Spike)"],
       surname: [
@@ -190,20 +523,79 @@ export const departmentsData: Record<DepartmentName, DepartementData> = {
     },
     perRole: {
       soldier: {
-        gears: [{ name: "hunting rifle" }, { name: "predator gland" }],
+        gears: [
+          { name: "Hunting Rifle", description: "(2E, +1d at Long Range)" },
+          {
+            name: "Predator Gland",
+            description:
+              "Declare a target. +1E when you intend to kill them. Tick 2 Stress if your target escapes.",
+          },
+        ],
       },
       researcher: {
-        gears: [{ name: "splicing kit" }, { name: "splice-critter" }],
+        gears: [
+          {
+            name: "Splicing Kit",
+            description:
+              "Inject another being to give them a short term alteration:",
+          },
+          {
+            name: "Splice-Critter",
+            description:
+              "Small animal, remarkably quick and stealthy with a 1E Bite.",
+          },
+        ],
       },
       operator: {
-        gears: [{ name: "prionic amplifier" }, { name: "universal-cells" }],
+        gears: [
+          {
+            name: "Psionic Amplifier",
+            description: "•	Tick 1 Stress to get a Vision.",
+          },
+          {
+            name: "Universal-Cells",
+            description:
+              "You can touch a machine to interface with it as if your device were plugged in.",
+          },
+        ],
       },
       engineer: {
-        gears: [{ name: "mule-gene" }, { name: "limit-break gland" }],
+        gears: [
+          {
+            name: "Mule-Gene",
+            description:
+              "You can carry guns and tools not intended to be portable.",
+          },
+          {
+            name: "Limit-Break Gland",
+            description:
+              "Tick 1 Hurt to perform an act of superhuman strength or speed.",
+          },
+        ],
       },
-      advisor: { gears: [{ name: "savant-gene" }, { name: "gene-scent" }] },
+      advisor: {
+        gears: [
+          {
+            name: "Savant-Gene",
+            description:
+              "You have perfect memory recall and mental arithmetic. Tick 1 Stress to get +2d on any mental action.",
+          },
+          {
+            name: "Gene-Scent",
+            description:
+              "You can spot a GENO on sight and get a rough idea of their modifications.",
+          },
+        ],
+      },
       pioneer: {
-        gears: [{ name: "blink-gene" }, { name: "night sight" }],
+        gears: [
+          {
+            name: "Blink-Gene",
+            description:
+              "Blink between shadows. Tick 1 Stress to blink through a wall.",
+          },
+          { name: "Night Sight", description: "Perfect darkvision." },
+        ],
       },
     },
   },

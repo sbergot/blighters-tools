@@ -1,29 +1,28 @@
 export type SkillName =
-    | "data"
-    | "deception"
-    | "empathy"
-    | "force"
-    | "hardware"
-    | "influence"
-    | "movement"
-    | "software"
-;
+  | "data"
+  | "deception"
+  | "empathy"
+  | "force"
+  | "hardware"
+  | "influence"
+  | "movement"
+  | "software";
 
 export type DepartmentName =
-    |    "corporate"
-    |    "union"
-    |    "naval"
-    |    "council"
-    |    "android"
-    |    "geno";
-  
+  | "corporate"
+  | "union"
+  | "naval"
+  | "council"
+  | "android"
+  | "geno";
+
 export type RoleName =
-    | "soldier"
-    | "researcher"
-    | "operator"
-    | "engineer"
-    | "advisor"
-    | "pioneer";
+  | "soldier"
+  | "researcher"
+  | "operator"
+  | "engineer"
+  | "advisor"
+  | "pioneer";
 
 export type Skill = number;
 
@@ -38,25 +37,27 @@ export interface Player {
 }
 
 export interface Team {
-    players: Player[];
-    gauges: TeamGauge;
+  players: Player[];
+  gauges: TeamGauge;
 }
 
 export type SkillSet = Record<SkillName, Skill>;
 
-export interface Gear {
-    name: string;
-    description?: string;
+export interface Element {
+  name: string;
+  description?: string;
 }
+
+export interface Gear extends Element {}
 
 export type Gauge = number;
 
 export interface PlayerGauges {
-    hurt: Gauge;
-    stress: Gauge;
+  hurt: Gauge;
+  stress: Gauge;
 }
 
 export interface TeamGauge {
-    heat: Gauge;
-    cost: Gauge;
+  heat: Gauge;
+  cost: Gauge;
 }
