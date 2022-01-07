@@ -1,5 +1,5 @@
 import React from "react";
-import { Children } from "./UITypes";
+import { Children, ClassName } from "./UITypes";
 
 function range(size: number): number[] {
   return [...Array(size).keys()];
@@ -11,9 +11,9 @@ export function SkillLevel({ level }: { level: number }) {
     <span className="inline-flex self-center ml-2">
       {range(4).map((idx) =>
         idx < level ? (
-          <span className={`bg-black ${commonclasses}`}></span>
+          <span key={idx} className={`bg-black ${commonclasses}`}></span>
         ) : (
-          <span className={commonclasses}></span>
+          <span key={idx} className={commonclasses}></span>
         )
       )}
     </span>
@@ -28,9 +28,9 @@ export function Gauge({ name, value }: { name: string; value: number }) {
       <div className="flex flex-col-reverse p-1">
         {range(6).map((idx) =>
           idx < value ? (
-            <span className={`bg-black ${commonclasses}`}></span>
+            <span key={idx} className={`bg-black ${commonclasses}`}></span>
           ) : (
-            <span className={commonclasses}></span>
+            <span key={idx} className={commonclasses}></span>
           )
         )}
       </div>
@@ -69,4 +69,8 @@ export function Button({
   >
     {children}
   </button>;
+}
+
+export function SubTitle({children, className}: Children & ClassName) {
+  return <h2 className={`text-lg font-semibold ${className ?? ""}`}>{children}</h2>
 }

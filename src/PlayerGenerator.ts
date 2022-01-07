@@ -1,8 +1,22 @@
 import { departments, departmentsData, roles, rolesData } from "./Data";
-import { Player } from "./Types";
+import { Gear, Player, RandomThing } from "./Types";
+
+function randomInt(max: number): number {
+  return Math.floor(Math.random() * max) + 1;
+}
 
 function pickRandom<T>(list: T[]): T {
-  return list[Math.floor(Math.random() * list.length)];
+  return list[randomInt(list.length) - 1];
+}
+
+function pickRandomThing(things: RandomThing[]): Gear {
+  const dices = 10 * randomInt(6) + randomInt(6);
+  for (const thing of things) {
+    if (dices >= thing.prob) {
+      return { name: thing.description };
+    }
+  }
+  throw { message: "could not find thing" };
 }
 
 export function GeneratePlayer(): Player {
@@ -27,10 +41,16 @@ export function GeneratePlayer(): Player {
       hurt: 0,
       stress: 0,
     },
-    gears: [{ name: "hand tool" }, { name: "handheld device" }],
+    gears: [],
+    randomThing: { name: "" },
   };
   InitSkills(player);
+  initGears(player);
   return player;
+}
+
+function initGears(player: Player) {
+  player.gears = [{ name: "hand tool" }, { name: "handheld device" }];
 }
 
 export function InitSkills(player: Player) {
@@ -41,4 +61,9 @@ export function InitSkills(player: Player) {
   rolesData[role].skills.forEach((skill) => {
     player.skills[skill] += 1;
   });
+}
+
+export function InitRandomThing(player: Player) {
+  const thingTable = departmentsData[player.department].random_things;
+  player.randomThing = pickRandomThing(thingTable);
 }

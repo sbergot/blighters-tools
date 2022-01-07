@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { departmentsData, rolesData, skillData, skillNames } from "./Data";
 import { GeneratePlayer, InitSkills } from "./PlayerGenerator";
-import { Button, SkillLevel, Step } from "./SharedComponents";
+import { Button, SkillLevel, Step, SubTitle } from "./SharedComponents";
 import { Gear, Player, SkillName } from "./Types";
 
 const additionalSkills = 2;
@@ -14,7 +14,7 @@ function GearE({ gear }: { gear: Gear }) {
       {gear.options && (
         <ul className="list-disc list-inside ml-4">
           {gear.options.map((opt) => (
-            <li>{opt}</li>
+            <li key={opt}>{opt}</li>
           ))}
         </ul>
       )}
@@ -97,27 +97,29 @@ export function CreationWizard({
   return (
     <div>
       <Step title="Department & Role" headerChildren={rerollBtn}>
+        <SubTitle>Department</SubTitle>
         <p>
-          Your department is "{department}". {departData.summary}{" "}
+          Your department is <span className="italic">{department}</span>. {departData.summary}{" "}
           {departData.description} You get one point in {departData.skills[0]}{" "}
           and {departData.skills[1]}.
         </p>
         <p className="mt-2">
-          Instinct (applies when your Stress Gauge is full):
+          Instinct (applies when your Stress Gauge is full)
         </p>
         <p>
-          <span className="font-bold">{departData.instinct.name}</span> -{" "}
+          <span className="font-bold">{departData.instinct.name}</span>:{" "}
           {departData.instinct.description}
         </p>
-        <p className="mt-2">
-          Your past role is "{role}". {rData.summary} You get one point in{" "}
+        <SubTitle className="mt-2">Role</SubTitle>
+        <p>
+          Your past role is <span className="italic">{role}</span>. {rData.summary} You get one point in{" "}
           {rData.skills[0]} and {rData.skills[1]}.
         </p>
         <div className="mt-2">
           You get the following unique gears:
           <ul className="list-disc list-inside">
             {uniqueGear.map((g) => (
-              <GearE gear={g} />
+              <GearE key={g.name} gear={g} />
             ))}
           </ul>
         </div>
@@ -134,7 +136,7 @@ export function CreationWizard({
         <div className={`inline-grid grid-cols-2fc max-w-xs self-center`}>
           {skillNames.map((name) => {
             return (
-              <>
+              <Fragment key={name}>
                 <div className="mt-2">
                   <span className="font-bold">{name}</span>
                 </div>
@@ -145,7 +147,7 @@ export function CreationWizard({
                   ) : null}
                 </div>
                 <p className="col-span-2">{skillData[name].description}</p>
-              </>
+              </Fragment>
             );
           })}
         </div>
@@ -158,7 +160,7 @@ export function CreationWizard({
             <p>Forenames:</p>
             <ul className="list-disc list-inside">
               {departData.naming.forenames.map((t) => (
-                <li>
+                <li key={t.trick}>
                   {t.trick} ({t.exemples.join(", ")})
                 </li>
               ))}
@@ -173,7 +175,7 @@ export function CreationWizard({
           <p>Surname:</p>
           <ul className="list-disc list-inside">
             {departData.naming.surname.map((t) => (
-              <li>
+              <li key={t.trick}>
                 {t.trick} ({t.exemples.join(", ")})
               </li>
             ))}

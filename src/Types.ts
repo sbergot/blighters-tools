@@ -33,6 +33,7 @@ export interface Player {
   role: RoleName;
   skills: SkillSet;
   gears: Gear[];
+  randomThing: Gear;
   gauges: PlayerGauges;
 }
 
@@ -64,9 +65,14 @@ export interface TeamGauge {
   cost: Gauge;
 }
 
-interface Naming {
+export interface Naming {
   trick: string;
   exemples: string[];
+}
+
+export interface RandomThing {
+  prob: number;
+  description: string;
 }
 
 export interface DepartementData {
@@ -74,7 +80,7 @@ export interface DepartementData {
   summary: string;
   description: string;
   instinct: Element;
-  random_things: { prob: number; description: string }[];
+  random_things: RandomThing[];
   naming: {
     forenames: Naming[];
     surname: Naming[];
