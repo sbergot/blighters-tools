@@ -92,3 +92,10 @@ export interface RoleData {
   skills: SkillName[];
   summary: string;
 }
+
+export interface Entry<T> {
+  id: string;
+  value: T;
+}
+
+export type Repository<T> = Record<string, Entry<T>>;

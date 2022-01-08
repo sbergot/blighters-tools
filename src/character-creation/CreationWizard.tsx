@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react";
-import { departmentsData, rolesData, skillData, skillNames } from "./Data";
-import { GeneratePlayer, InitSkills } from "./PlayerGenerator";
-import { Button, SkillLevel, Step, SubTitle } from "./SharedComponents";
-import { Gear, Player, SkillName } from "./Types";
+import { departmentsData, rolesData, skillData, skillNames } from "../Data";
+import { GeneratePlayer, InitSkills } from "../PlayerGenerator";
+import { Button, SkillLevel, Step, SubTitle } from "../SharedComponents";
+import { Gear, Player, SkillName } from "../Types";
 
 const additionalSkills = 2;
 

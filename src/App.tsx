@@ -1,33 +1,22 @@
-import { useState } from "react";
-import { CreationWizard } from "./CreationWizard";
-import { PlayerSheet } from "./PlayerSheet";
-import { Player } from "./Types";
-
-type Mode = "wizard" | "display";
+import { PlayerRepositoryContainer } from "./services";
 
 function App() {
-  const [mode, setMode] = useState<Mode>("wizard");
-  const [player, setPlayer] = useState<Player | null>(null);
-
-  function savePlayer(p: Player) {
-    setPlayer(p);
-    setMode("display");
-  }
+  const { getEntries } = PlayerRepositoryContainer.useContainer();
+  const entries = Object.values(getEntries());
 
   return (
-    <div className="p-4 mx-auto max-w-2xl">
-      <h1 className="text-6xl">Blighters creation tool</h1>
-      <h2>Blighters is a tabletop rpg by Chris McDowall</h2>
-      <a className="text-orange-700" href="https://www.bastionland.com/">
-        https://www.bastionland.com/
-      </a>
-      <div className="mt-4">
-        {mode == "wizard" ? <CreationWizard savePlayer={savePlayer} /> : null}
-        {mode == "display" && player != null ? (
-          <PlayerSheet player={player} />
-        ) : null}
-      </div>
-    </div>
+    <>
+    <a href="/character-creation/">
+      New character
+    </a>
+    <ul>
+      {entries.map((e) => (
+        <li key={e.id}><a href={`/character-sheet/?character=${e.id}`}>
+          {e.value.firstname} {e.value.lastname}
+          </a></li>
+      ))}
+    </ul>
+    </>
   );
 }
 

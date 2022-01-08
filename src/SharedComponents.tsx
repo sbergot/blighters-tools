@@ -1,4 +1,5 @@
 import React from "react";
+import { PlayerRepositoryContainer } from "./services";
 import { Children, ClassName } from "./UITypes";
 
 function range(size: number): number[] {
@@ -44,7 +45,7 @@ export function Step({
   headerChildren,
 }: Children & {
   title: string;
-  headerChildren?: React.ReactNode
+  headerChildren?: React.ReactNode;
 }) {
   return (
     <div className="border my-4">
@@ -60,17 +61,40 @@ export function Step({
 export function Button({
   children,
   onClick,
-  disabled
+  disabled,
 }: Children & { onClick: () => void; disabled?: boolean }) {
-    const colors = disabled ? "bg-gray-500 hover:bg-gray-700 cursor-not-allowed" : "bg-orange-500 hover:bg-orange-700";
-  return <button
-    className={`${colors} text-white text-sm font-bold py-1 px-2 rounded`}
-    onClick={disabled ? () => {} : onClick}
-  >
-    {children}
-  </button>;
+  const colors = disabled
+    ? "bg-gray-500 hover:bg-gray-700 cursor-not-allowed"
+    : "bg-orange-500 hover:bg-orange-700";
+  return (
+    <button
+      className={`${colors} text-white text-sm font-bold py-1 px-2 rounded`}
+      onClick={disabled ? () => {} : onClick}
+    >
+      {children}
+    </button>
+  );
 }
 
-export function SubTitle({children, className}: Children & ClassName) {
-  return <h2 className={`text-lg font-semibold ${className ?? ""}`}>{children}</h2>
+export function SubTitle({ children, className }: Children & ClassName) {
+  return (
+    <h2 className={`text-lg font-semibold ${className ?? ""}`}>{children}</h2>
+  );
+}
+
+export function Layout({ children }: Children) {
+  return (
+    <div className="p-4 mx-auto max-w-2xl">
+      <h1 className="text-6xl"><a href="/">Blighters creation tool</a></h1>
+      <h2>Blighters is a tabletop rpg by Chris McDowall</h2>
+      <a className="text-orange-700" href="https://www.bastionland.com/">
+        https://www.bastionland.com/
+      </a>
+      <div className="mt-4">
+        <PlayerRepositoryContainer.Provider>
+          {children}
+        </PlayerRepositoryContainer.Provider>
+      </div>
+    </div>
+  );
 }
