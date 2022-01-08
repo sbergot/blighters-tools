@@ -98,3 +98,5 @@ export interface Entry<T> {
 }
 
 export type Repository<T> = Record<string, Entry<T>>;
+
+export type PlayerGaugeName = keyof PlayerGauges;

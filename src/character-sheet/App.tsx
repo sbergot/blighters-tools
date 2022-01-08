@@ -1,4 +1,4 @@
-import { PlayerSheet } from "../PlayerSheet";
+import { PlayerSheet } from "./PlayerSheet";
 import { PlayerRepositoryContainer } from "../services";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       <button className="btn btn--primary" onClick={onDelete}>
         Delete character
       </button>
-      <PlayerSheet player={player.value} />
+      <PlayerSheet entry={player} />
     </>
   );
 }

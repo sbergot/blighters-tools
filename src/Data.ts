@@ -1,6 +1,7 @@
 import {
   DepartementData,
   DepartmentName,
+  PlayerGaugeName,
   RoleData,
   RoleName,
   SkillName,
@@ -839,4 +840,9 @@ export const skillNames: SkillName[] = [
   "influence",
   "movement",
   "software",
+];
+
+export const playerGauges: PlayerGaugeName[] = [
+  "hurt",
+  "stress"
 ];
