@@ -4,7 +4,7 @@ import { GeneratePlayer, InitSkills } from "../PlayerGenerator";
 import { Button, SkillLevel, Step, SubTitle } from "../SharedComponents";
 import { Gear, Player, SkillName } from "../Types";
 
-const additionalSkills = 2;
+const ADDITIONAL_SKILL_POINTS = 2;
 
 function GearE({ gear }: { gear: Gear }) {
   return (
@@ -29,12 +29,10 @@ export function CreationWizard({
 }) {
   const [player, setPlayer] = useState<Player>(GeneratePlayer());
   const [remainingSkillPoints, setRemainingSkillPoints] =
-    useState(additionalSkills);
+    useState(ADDITIONAL_SKILL_POINTS);
   const { department, role } = player;
   const departData = departmentsData[department];
   const rData = rolesData[role];
-
-  const uniqueGear = departData.perRole[role].gears;
 
   function addSkill(skillName: SkillName) {
     setRemainingSkillPoints((p) => p - 1);
@@ -51,12 +49,12 @@ export function CreationWizard({
     });
     InitSkills(newPlayer);
     setPlayer(newPlayer);
-    setRemainingSkillPoints(additionalSkills);
+    setRemainingSkillPoints(ADDITIONAL_SKILL_POINTS);
   }
 
   function reroll() {
     setPlayer(GeneratePlayer());
-    setRemainingSkillPoints(additionalSkills);
+    setRemainingSkillPoints(ADDITIONAL_SKILL_POINTS);
   }
 
   function setForename(forename: string) {
@@ -85,8 +83,7 @@ export function CreationWizard({
   );
 
   function onSavePlayer() {
-    const newPlayer = { ...player, gears: [...player.gears, ...uniqueGear] };
-    savePlayer(newPlayer);
+    savePlayer(player);
   }
 
   const saveCharBtn = (
@@ -116,9 +113,9 @@ export function CreationWizard({
           {rData.skills[0]} and {rData.skills[1]}.
         </p>
         <div className="mt-2">
-          You get the following unique gears:
+          You get the following gears:
           <ul className="list-disc list-inside">
-            {uniqueGear.map((g) => (
+            {player.gears.map((g) => (
               <GearE key={g.name} gear={g} />
             ))}
           </ul>

@@ -42,7 +42,6 @@ export function GeneratePlayer(): Player {
       stress: 0,
     },
     gears: [],
-    randomThing: { name: "" },
   };
   InitSkills(player);
   initGears(player);
@@ -51,6 +50,10 @@ export function GeneratePlayer(): Player {
 
 function initGears(player: Player) {
   player.gears = [{ name: "hand tool" }, { name: "handheld device" }];
+  const thingTable = departmentsData[player.department].random_things;
+  player.gears.push(pickRandomThing(thingTable));
+  const uniqueGears = departmentsData[player.department].perRole[player.role].gears;
+  player.gears.push(...uniqueGears);
 }
 
 export function InitSkills(player: Player) {
@@ -61,9 +64,4 @@ export function InitSkills(player: Player) {
   rolesData[role].skills.forEach((skill) => {
     player.skills[skill] += 1;
   });
-}
-
-export function InitRandomThing(player: Player) {
-  const thingTable = departmentsData[player.department].random_things;
-  player.randomThing = pickRandomThing(thingTable);
 }

@@ -33,7 +33,6 @@ export interface Player {
   role: RoleName;
   skills: SkillSet;
   gears: Gear[];
-  randomThing: Gear;
   gauges: PlayerGauges;
 }
 
