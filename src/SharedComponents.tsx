@@ -64,11 +64,11 @@ export function Button({
   disabled,
 }: Children & { onClick: () => void; disabled?: boolean }) {
   const colors = disabled
-    ? "bg-gray-500 hover:bg-gray-700 cursor-not-allowed"
-    : "bg-orange-500 hover:bg-orange-700";
+    ? "btn--disabled"
+    : "btn--primary";
   return (
     <button
-      className={`${colors} text-white text-sm font-bold py-1 px-2 rounded`}
+      className={`${colors} btn`}
       onClick={disabled ? () => {} : onClick}
     >
       {children}
@@ -87,7 +87,7 @@ export function Layout({ children }: Children) {
     <div className="p-4 mx-auto max-w-2xl">
       <h1 className="text-6xl"><a href="/">Blighters creation tool</a></h1>
       <h2>Blighters is a tabletop rpg by Chris McDowall</h2>
-      <a className="text-orange-700" href="https://www.bastionland.com/">
+      <a className="link" href="https://www.bastionland.com/">
         https://www.bastionland.com/
       </a>
       <div className="mt-4">
