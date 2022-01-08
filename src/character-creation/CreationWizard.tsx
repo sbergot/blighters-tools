@@ -1,26 +1,10 @@
 import { Fragment, useState } from "react";
 import { departmentsData, rolesData, skillData, skillNames } from "../Data";
 import { GeneratePlayer, InitSkills } from "../PlayerGenerator";
-import { Button, SkillLevel, Step, SubTitle } from "../SharedComponents";
+import { Button, PlayerGears, SkillLevel, Step, SubTitle } from "../SharedComponents";
 import { Gear, Player, SkillName } from "../Types";
 
 const ADDITIONAL_SKILL_POINTS = 2;
-
-function GearE({ gear }: { gear: Gear }) {
-  return (
-    <div>
-      <span className="font-bold">{gear.name}</span>
-      {gear.description && ` - ${gear.description}`}
-      {gear.options && (
-        <ul className="list-disc list-inside ml-4">
-          {gear.options.map((opt) => (
-            <li key={opt}>{opt}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
 
 export function CreationWizard({
   savePlayer,
@@ -114,11 +98,7 @@ export function CreationWizard({
         </p>
         <div className="mt-2">
           You get the following gears:
-          <ul className="list-disc list-inside">
-            {player.gears.map((g) => (
-              <GearE key={g.name} gear={g} />
-            ))}
-          </ul>
+          <PlayerGears gears={player.gears} />
         </div>
       </Step>
       <Step title="Skills" headerChildren={resetSkillsBtn}>

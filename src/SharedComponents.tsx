@@ -1,5 +1,6 @@
 import React from "react";
 import { PlayerRepositoryContainer } from "./services";
+import { Gear } from "./Types";
 import { Children, ClassName, IntState } from "./UITypes";
 
 function range(size: number): number[] {
@@ -21,13 +22,7 @@ export function SkillLevel({ level }: { level: number }) {
   );
 }
 
-export function Gauge({
-  name,
-  state,
-}: {
-  name: string;
-  state: IntState;
-}) {
+export function Gauge({ name, state }: { name: string; state: IntState }) {
   const commonclasses = "border border-black w-6 h-6";
   const [value, setValue] = state;
   return (
@@ -37,7 +32,7 @@ export function Gauge({
         {range(6).map((idx) => (
           <span
             key={idx}
-            className={`${idx < value ? "bg-black" : ""} ${commonclasses}`}
+            className={`${idx < value ? "bg-gray-500" : ""} ${commonclasses}`}
             onClick={() => setValue(idx)}
           ></span>
         ))}
@@ -100,5 +95,31 @@ export function Layout({ children }: Children) {
         </PlayerRepositoryContainer.Provider>
       </div>
     </div>
+  );
+}
+
+function GearE({ gear }: { gear: Gear }) {
+  return (
+    <div>
+      <span className="font-bold">{gear.name}</span>
+      {gear.description && ` - ${gear.description}`}
+      {gear.options && (
+        <ul className="list-disc list-inside ml-4">
+          {gear.options.map((opt) => (
+            <li key={opt}>{opt}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export function PlayerGears({ gears }: { gears: Gear[] }) {
+  return (
+    <ul className="list-disc list-inside">
+      {gears.map((g) => (
+        <GearE key={g.name} gear={g} />
+      ))}
+    </ul>
   );
 }
