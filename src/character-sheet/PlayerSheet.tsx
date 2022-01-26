@@ -1,9 +1,9 @@
 import { departmentsData, playerGauges } from "../Data";
 import { PlayerRepositoryContainer } from "../services";
-import { Gauge, PlayerGears, SkillLevel } from "../SharedComponents";
-import { Entry, Player, PlayerGaugeName } from "../Types";
+import { Gauge, PlayerGears, SkillLevel, SkillList } from "../SharedComponents";
+import { Entry, Player, PlayerGaugeName, SkillName } from "../Types";
 
-export function PlayerSheet({ entry }: { entry: Entry<Player> }) {
+export function PlayerSheet({ entry, editable }: { entry: Entry<Player>; editable:boolean }) {
   const { update } = PlayerRepositoryContainer.useContainer();
   const player = entry.value;
   const departData = departmentsData[player.department];
@@ -15,6 +15,22 @@ export function PlayerSheet({ entry }: { entry: Entry<Player> }) {
       value: { ...player, gauges: { ...player.gauges, [name]: newValue } },
     };
     update(newEntry);
+  }
+
+  function addSkill(skillName: SkillName) {
+    const newPlayer = {
+      ...player,
+      skills: { ...player.skills, [skillName]: Math.min(player.skills[skillName] + 1, 4) },
+    };
+    update({...entry, value: newPlayer});
+  }
+
+  function removeSkill(skillName: SkillName) {
+    const newPlayer = {
+      ...player,
+      skills: { ...player.skills, [skillName]: Math.max(player.skills[skillName] - 1, 0) },
+    };
+    update({...entry, value: newPlayer});
   }
 
   return (
@@ -31,16 +47,7 @@ export function PlayerSheet({ entry }: { entry: Entry<Player> }) {
         {departData.instinct.description}
       </p>
       <div className="flex mt-4">
-        <div className="grid grid-cols-2fc">
-          {Object.entries(player.skills).map(([name, value]) => {
-            return (
-              <>
-                <div>{name}</div>
-                <SkillLevel level={value} />
-              </>
-            );
-          })}
-        </div>
+        <SkillList  skills={player.skills} editable={editable} addSkill={addSkill} removeSkill={removeSkill} />
         <div className="flex ml-8">
           {playerGauges.map((name) => {
             return (

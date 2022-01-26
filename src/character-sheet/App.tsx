@@ -1,8 +1,10 @@
 import { PlayerSheet } from "./PlayerSheet";
 import { PlayerRepositoryContainer } from "../services";
+import { useState } from "react";
 
 function App() {
   const { getEntries, deleteEntry } = PlayerRepositoryContainer.useContainer();
+  const [editable, setEditable] = useState(false);
   const characterId = new URL(document.location as any).searchParams.get(
     "character"
   );
@@ -25,7 +27,10 @@ function App() {
       <button className="btn btn--primary" onClick={onDelete}>
         Delete character
       </button>
-      <PlayerSheet entry={player} />
+      <button className="btn btn--primary ml-2" onClick={() => setEditable(e => !e)}>
+        {editable ? 'save' : 'edit'}
+      </button>
+      <PlayerSheet entry={player} editable={editable} />
     </>
   );
 }

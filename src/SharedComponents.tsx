@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { skillNames, skillData } from "./Data";
 import { PlayerRepositoryContainer } from "./services";
-import { Gear } from "./Types";
+import { Gear, SkillName, SkillSet } from "./Types";
 import { Children, ClassName, IntState } from "./UITypes";
 
 function range(size: number): number[] {
@@ -122,4 +123,28 @@ export function PlayerGears({ gears }: { gears: Gear[] }) {
       ))}
     </ul>
   );
+}
+
+export function SkillList({ editable, addSkill, removeSkill, skills }: { editable: boolean; skills: SkillSet; addSkill: (s: SkillName) => void; removeSkill: (s: SkillName) => void }) {
+  return <div className={`inline-grid grid-cols-2fc max-w-xs self-center`}>
+    {skillNames.map((name) => {
+      return (
+        <Fragment key={name}>
+          <div className="mt-2">
+            <span className="font-bold">{name}</span>
+          </div>
+          <div className="mt-3 ml-8 w-32">
+            <SkillLevel level={skills[name]} />
+            {editable ? (
+              <span className="font-bold">
+              <button className="mx-1" onClick={() => removeSkill(name)}>-</button>
+              <button onClick={() => addSkill(name)}>+</button>
+              </span>
+            ) : null}
+          </div>
+          <p className="col-span-2">{skillData[name].description}</p>
+        </Fragment>
+      );
+    })}
+  </div>
 }

@@ -1,8 +1,8 @@
-import { Fragment, useState } from "react";
-import { departmentsData, rolesData, skillData, skillNames } from "../Data";
+import { useState } from "react";
+import { departmentsData, rolesData, skillNames } from "../Data";
 import { GeneratePlayer, InitSkills } from "../PlayerGenerator";
-import { Button, PlayerGears, SkillLevel, Step, SubTitle } from "../SharedComponents";
-import { Gear, Player, SkillName } from "../Types";
+import { Button, PlayerGears, SkillList, Step, SubTitle } from "../SharedComponents";
+import { Player, SkillName } from "../Types";
 
 const ADDITIONAL_SKILL_POINTS = 2;
 
@@ -22,7 +22,15 @@ export function CreationWizard({
     setRemainingSkillPoints((p) => p - 1);
     setPlayer({
       ...player,
-      skills: { ...player.skills, [skillName]: player.skills[skillName] + 1 },
+      skills: { ...player.skills, [skillName]: Math.min(player.skills[skillName] + 1, 4) },
+    });
+  }
+
+  function removeSkill(skillName: SkillName) {
+    setRemainingSkillPoints((p) => p + 1);
+    setPlayer({
+      ...player,
+      skills: { ...player.skills, [skillName]: Math.max(player.skills[skillName] - 1, 0) },
     });
   }
 
@@ -103,31 +111,13 @@ export function CreationWizard({
       </Step>
       <Step title="Skills" headerChildren={resetSkillsBtn}>
         <div className="flex flex-col">
-        <p>
-          {!skillsOk
-            ? `Please assign ${remainingSkillPoints} additional skill point${
-                remainingSkillPoints == 2 ? "s" : ""
+          <p>
+            {!skillsOk
+              ? `Please assign ${remainingSkillPoints} additional skill point${remainingSkillPoints == 2 ? "s" : ""
               }.`
-            : "All skill points assigned."}
-        </p>
-        <div className={`inline-grid grid-cols-2fc max-w-xs self-center`}>
-          {skillNames.map((name) => {
-            return (
-              <Fragment key={name}>
-                <div className="mt-2">
-                  <span className="font-bold">{name}</span>
-                </div>
-                <div className="mt-3 ml-8 w-32">
-                  <SkillLevel level={player.skills[name]} />
-                  {!skillsOk ? (
-                    <button onClick={() => addSkill(name)}>+</button>
-                  ) : null}
-                </div>
-                <p className="col-span-2">{skillData[name].description}</p>
-              </Fragment>
-            );
-          })}
-        </div>
+              : "All skill points assigned."}
+          </p>
+          <SkillList skills={player.skills} editable={!skillsOk} addSkill={addSkill} removeSkill={removeSkill} />
         </div>
       </Step>
       <Step title="Name" headerChildren={saveCharBtn}>
