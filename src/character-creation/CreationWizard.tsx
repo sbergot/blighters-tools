@@ -117,7 +117,7 @@ export function CreationWizard({
                 <div className="mt-2">
                   <span className="font-bold">{name}</span>
                 </div>
-                <div className="mt-3 ml-8">
+                <div className="mt-3 ml-8 w-32">
                   <SkillLevel level={player.skills[name]} />
                   {!skillsOk ? (
                     <button onClick={() => addSkill(name)}>+</button>
