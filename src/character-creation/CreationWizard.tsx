@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { departmentsData, rolesData, skillNames } from "../Data";
 import { GeneratePlayer, InitSkills } from "../PlayerGenerator";
-import { Button, PlayerGears, SkillList, Step, SubTitle } from "../SharedComponents";
+import {
+  Button,
+  PlayerGears,
+  SkillList,
+  Step,
+  SubTitle,
+} from "../SharedComponents";
 import { Player, SkillName } from "../Types";
 
 const ADDITIONAL_SKILL_POINTS = 2;
@@ -12,8 +18,9 @@ export function CreationWizard({
   savePlayer: (player: Player) => void;
 }) {
   const [player, setPlayer] = useState<Player>(GeneratePlayer());
-  const [remainingSkillPoints, setRemainingSkillPoints] =
-    useState(ADDITIONAL_SKILL_POINTS);
+  const [remainingSkillPoints, setRemainingSkillPoints] = useState(
+    ADDITIONAL_SKILL_POINTS
+  );
   const { department, role } = player;
   const departData = departmentsData[department];
   const rData = rolesData[role];
@@ -22,17 +29,14 @@ export function CreationWizard({
     setRemainingSkillPoints((p) => p - 1);
     setPlayer({
       ...player,
-      skills: { ...player.skills, [skillName]: Math.min(player.skills[skillName] + 1, 4) },
+      skills: {
+        ...player.skills,
+        [skillName]: Math.min(player.skills[skillName] + 1, 4),
+      },
     });
   }
 
-  function removeSkill(skillName: SkillName) {
-    setRemainingSkillPoints((p) => p + 1);
-    setPlayer({
-      ...player,
-      skills: { ...player.skills, [skillName]: Math.max(player.skills[skillName] - 1, 0) },
-    });
-  }
+  function removeSkill(skillName: SkillName) {}
 
   function resetSkills() {
     const newPlayer: Player = { ...player, skills: { ...player.skills } };
@@ -88,9 +92,9 @@ export function CreationWizard({
       <Step title="Department & Role" headerChildren={rerollBtn}>
         <SubTitle>Department</SubTitle>
         <p>
-          Your department is <span className="italic">{department}</span>. {departData.summary}{" "}
-          {departData.description} You get one point in {departData.skills[0]}{" "}
-          and {departData.skills[1]}.
+          Your department is <span className="italic">{department}</span>.{" "}
+          {departData.summary} {departData.description} You get one point in{" "}
+          {departData.skills[0]} and {departData.skills[1]}.
         </p>
         <p className="mt-2">
           Instinct (applies when your Stress Gauge is full)
@@ -101,8 +105,9 @@ export function CreationWizard({
         </p>
         <SubTitle className="mt-2">Role</SubTitle>
         <p>
-          Your past role is <span className="italic">{role}</span>. {rData.summary} You get one point in{" "}
-          {rData.skills[0]} and {rData.skills[1]}.
+          Your past role is <span className="italic">{role}</span>.{" "}
+          {rData.summary} You get one point in {rData.skills[0]} and{" "}
+          {rData.skills[1]}.
         </p>
         <div className="mt-2">
           You get the following gears:
@@ -113,11 +118,17 @@ export function CreationWizard({
         <div className="flex flex-col">
           <p>
             {!skillsOk
-              ? `Please assign ${remainingSkillPoints} additional skill point${remainingSkillPoints == 2 ? "s" : ""
-              }.`
+              ? `Please assign ${remainingSkillPoints} additional skill point${
+                  remainingSkillPoints == 2 ? "s" : ""
+                }.`
               : "All skill points assigned."}
           </p>
-          <SkillList skills={player.skills} editable={!skillsOk} addSkill={addSkill} removeSkill={removeSkill} />
+          <SkillList
+            skills={player.skills}
+            editable={!skillsOk}
+            addSkill={addSkill}
+            removeSkill={removeSkill}
+          />
         </div>
       </Step>
       <Step title="Name" headerChildren={saveCharBtn}>
